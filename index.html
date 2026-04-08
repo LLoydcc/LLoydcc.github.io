@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jan Lüthje — Software & AI Engineer</title>
+    <meta name="description"
+        content="Jan Lüthje — software and AI engineer based in Hamburg. Co-founder of Symbolic Labs. Building Papyrus AI, llms.txt Generator, and Kileido.">
+    <meta name="author" content="Jan Lüthje">
+    <link rel="canonical" href="https://lloydcc.github.io">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://lloydcc.github.io">
+    <meta property="og:title" content="Jan Lüthje — Software & AI Engineer">
+    <meta property="og:description"
+        content="Software and AI engineer based in Hamburg. Co-founder of Symbolic Labs. Building Papyrus AI, llms.txt Generator, and Kileido.">
+    <meta property="og:locale" content="en_US">
+    <meta property="profile:first_name" content="Jan">
+    <meta property="profile:last_name" content="Lüthje">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Jan Lüthje — Software & AI Engineer">
+    <meta name="twitter:description" content="Software and AI engineer based in Hamburg. Co-founder of Symbolic Labs.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #F5F0E8;
+            --bg-card: #EDE8DF;
+            --ink: #1C1917;
+            --ink-muted: #6B6560;
+            --accent: #B85C38;
+            --rule: #D8D0C4;
+            --radius: 10px;
+        }
+
+        html {
+            font-size: 17px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.65;
+            min-height: 100vh;
+            /* grain overlay */
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 80px 28px 120px;
+        }
+
+        /* ── Header ── */
+        header {
+            display: flex;
+            align-items: flex-start;
+            gap: 32px;
+            margin-bottom: 56px;
+            opacity: 0;
+            animation: rise 0.6s ease forwards;
+        }
+
+        .avatar {
+            flex-shrink: 0;
+            width: 96px;
+            height: 96px;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+
+        .header-text {
+            padding-top: 4px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+        }
+
+        .tagline {
+            margin-top: 6px;
+            color: var(--ink-muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* ── Bio ── */
+        .bio {
+            margin-bottom: 56px;
+            opacity: 0;
+            animation: rise 0.6s ease 0.12s forwards;
+        }
+
+        .bio p {
+            font-size: 1.05rem;
+            color: var(--ink);
+            max-width: 560px;
+        }
+
+        /* ── Section ── */
+        section {
+            opacity: 0;
+        }
+
+        section:nth-of-type(1) {
+            animation: rise 0.6s ease 0.24s forwards;
+        }
+
+        section:nth-of-type(2) {
+            animation: rise 0.6s ease 0.36s forwards;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            margin-bottom: 20px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--rule);
+            margin-bottom: 32px;
+        }
+
+        /* ── Company card ── */
+        .company-card {
+            background: var(--bg-card);
+            border: 1px solid var(--rule);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin-bottom: 56px;
+        }
+
+        .company-card h2 {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+
+        .company-card p {
+            color: var(--ink-muted);
+            font-size: 0.92rem;
+            margin-bottom: 14px;
+        }
+
+        /* ── Project grid ── */
+        .projects {
+            display: grid;
+            gap: 14px;
+            margin-bottom: 56px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--rule);
+            border-radius: var(--radius);
+            padding: 22px 28px;
+            transition: border-color 0.2s, transform 0.2s;
+            cursor: default;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .project-card h3 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .project-card p {
+            color: var(--ink-muted);
+            font-size: 0.88rem;
+        }
+
+        /* ── Links ── */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            padding: 4px 13px;
+            transition: background 0.15s, color 0.15s;
+            text-decoration: none;
+        }
+
+        .btn-link:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-bottom-color: transparent;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--rule);
+            padding-top: 28px;
+            font-size: 0.82rem;
+            color: var(--ink-muted);
+            opacity: 0;
+            animation: rise 0.6s ease 0.48s forwards;
+        }
+
+        footer a {
+            color: var(--ink-muted);
+        }
+
+        footer a:hover {
+            color: var(--ink);
+        }
+
+        /* ── Animation ── */
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 520px) {
+            html {
+                font-size: 16px;
+            }
+
+            .wrap {
+                padding: 52px 20px 80px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            header {
+                gap: 20px;
+            }
+
+            .avatar {
+                width: 80px;
+                height: 80px;
+                border-radius: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+
+        <header>
+            <img class="avatar" src="jan.webp" alt="Jan Lüthje">
+            <div class="header-text">
+                <h1>Jan Lüthje</h1>
+                <p class="tagline">Software & AI Engineer</p>
+            </div>
+        </header>
+
+        <div class="bio">
+            <p>
+                Building AI-powered document understanding solutions and RAG systems.
+                Co-founder of <a href="https://symboliclabs.de" target="_blank" rel="noopener me"
+                    title="Symbolic Labs — AI engineering Hamburg">Symbolic Labs</a>.
+            </p>
+        </div>
+
+        <section>
+            <div class="section-label">Company</div>
+            <hr>
+            <div class="company-card">
+                <h2><a href="https://symboliclabs.de" target="_blank" rel="noopener me"
+                        title="Symbolic Labs — software studio Hamburg">Symbolic Labs</a></h2>
+                <p>
+                    We build custom AI solutions for businesses: LLMs, RAG systems, generative AI.
+                    Everything is built and hosted in Germany.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-label">Projects</div>
+            <hr>
+            <div class="projects">
+
+                <div class="project-card">
+                    <h3><a href="https://papyrusai.de" target="_blank" rel="noopener"
+                            title="Papyrus AI — AI document intelligence">Papyrus AI</a></h3>
+                    <p>
+                        Extracts structured data from documents. The results can be used directly in RAG and GraphRAG
+                        systems, with Papyrus handling the processing pipeline if needed.
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://llmstxt-generator.de" target="_blank" rel="noopener"
+                            title="llms.txt Generator — create llms.txt for your website">llms.txt Generator</a></h3>
+                    <p>
+                        Crawls your website and generates <code
+                            style="font-size:0.85em;color:var(--ink)">llms.txt</code> and <code
+                            style="font-size:0.85em;color:var(--ink)">llms-full.txt</code> so AI systems like ChatGPT
+                        and Claude can actually understand what your site is about.
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://kileido.de" target="_blank" rel="noopener" title="Kileido">Kileido</a></h3>
+                    <p>
+                        Document management for daycare centers. Kileido sorts incoming documents into the right
+                        categories automatically and lets staff chat with their documents.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <footer>
+            <a href="https://github.com/LLoydcc" target="_blank" rel="noopener me">GitHub</a>
+        </footer>
+
+    </div>
+</body>
+
+</html>
